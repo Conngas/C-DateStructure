@@ -1,0 +1,2 @@
+E:\Works\C++\StaticLinkList\Debug\StaticLinkList.exe
+E:\Works\C++\StaticLinkList\Debug\StaticLinkList.pdb

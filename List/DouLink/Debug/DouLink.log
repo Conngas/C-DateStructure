@@ -1,0 +1,4 @@
+﻿  main.cpp
+H:\CodeWorks\Cclass\C++\DataStruct\DouLink\DulHead.h(28,2): warning C4091: “typedef ”: 没有声明变量时忽略“List”的左侧
+H:\CodeWorks\Cclass\C++\DataStruct\DouLink\main.cpp(9,9): warning C4101: “p”: 未引用的局部变量
+  DouLink.vcxproj -> H:\CodeWorks\Cclass\C++\DataStruct\DouLink\Debug\DouLink.exe

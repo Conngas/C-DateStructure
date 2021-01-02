@@ -1,0 +1,4 @@
+E:\Works\C++\Llist\Debug\Llist.exe
+E:\Works\C++\Llist\Debug\Llist.pdb
+E:\Works\C++\DS\Llist\Debug\Llist.exe
+E:\Works\C++\DS\Llist\Debug\Llist.pdb

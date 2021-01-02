@@ -1,0 +1,2 @@
+E:\Works\C++\DS\C1SList\Debug\C1SList.exe
+E:\Works\C++\DS\C1SList\Debug\C1SList.pdb

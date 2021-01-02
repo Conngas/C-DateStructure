@@ -1,0 +1,2 @@
+E:\Works\C++\DulList\Debug\DulList.exe
+E:\Works\C++\DulList\Debug\DulList.pdb

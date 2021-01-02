@@ -1,0 +1,2 @@
+H:\CodeWorks\DS\SeqQueue\Debug\SeqQueue.exe
+H:\CodeWorks\DS\SeqQueue\Debug\SeqQueue.pdb

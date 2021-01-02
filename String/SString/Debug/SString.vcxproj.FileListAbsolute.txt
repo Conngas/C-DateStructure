@@ -1,0 +1,2 @@
+E:\Works\CodeWorks\C++\DS\String\SString\Debug\SString.exe
+E:\Works\CodeWorks\C++\DS\String\SString\Debug\SString.pdb

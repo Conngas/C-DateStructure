@@ -1,0 +1,5 @@
+﻿  Main.cpp
+H:\CodeWorks\DS\String\SString\Main.cpp(5,10): warning C4101: “S”: 未引用的局部变量
+  SString.cpp
+  正在生成代码...
+  SString.vcxproj -> H:\CodeWorks\DS\String\SString\Debug\SString.exe

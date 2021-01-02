@@ -1,0 +1,2 @@
+E:\Works\C++\DS\Stack\CppLinkStack\Debug\CppLinkStack.exe
+E:\Works\C++\DS\Stack\CppLinkStack\Debug\CppLinkStack.pdb
