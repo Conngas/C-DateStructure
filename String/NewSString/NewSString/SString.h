@@ -16,6 +16,10 @@ void StrCopy(SString s,SString t);
 void StrEmpty(SString s);
 int StrCompare(SString s,SString t);
 void StrConcat(SString T, SString a, SString b);
+void Strsub(SString Main, SString sub, int pos, int s_len);
+void StrInsert(SString Main, SString Addstr, int pos);
+void StrDelete(SString Main, int pos, int len);
+void StrClear(SString Main);
 
 #endif // !SSTRING_H_
 
