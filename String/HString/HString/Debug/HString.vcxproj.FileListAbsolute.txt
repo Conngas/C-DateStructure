@@ -1,0 +1,2 @@
+E:\Works\CodeWorks\ComputerScience\DS\String\HString\HString\Debug\HString.exe
+E:\Works\CodeWorks\ComputerScience\DS\String\HString\HString\Debug\HString.pdb
