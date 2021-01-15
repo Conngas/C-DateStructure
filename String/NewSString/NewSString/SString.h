@@ -20,6 +20,7 @@ void Strsub(SString Main, SString sub, int pos, int s_len);
 void StrInsert(SString Main, SString Addstr, int pos);
 void StrDelete(SString Main, int pos, int len);
 void StrClear(SString Main);
-
+int  StrMap(SString Main, SString sub, int pos);
+void StrReplce(SString Main, SString sub, SString rep);
 #endif // !SSTRING_H_
 

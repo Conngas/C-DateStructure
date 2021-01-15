@@ -1,0 +1,3 @@
+﻿  MyKMP.cpp
+E:\Works\CodeWorks\ComputerScience\DS\String\StringMapping\MyKMP.cpp(8,11): warning C4018: “<”: 有符号/无符号不匹配
+  StringMapping.vcxproj -> E:\Works\CodeWorks\ComputerScience\DS\String\StringMapping\Debug\StringMapping.exe

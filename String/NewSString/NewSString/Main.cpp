@@ -36,9 +36,9 @@
 
 int main()
 {
-	char a[] = "abcdsdfsegr";
-	const char* b = "efghfafeafsefsef";
-	const char* p = "cwyjq";
+	char a[] = "---a";
+	const char* b = "ggooggoogogo";
+	const char* p = "oo";
 	
 	SString FristStr;
 	InitString(FristStr);
@@ -70,6 +70,12 @@ int main()
 	StrInsert(FristStr, Bstr, 2);
 	Print(FristStr);
 	*/
+	/*
 	StrDelete(FristStr, 2, 2);
 	Print(FristStr);
+	*/
+	/*
+	int res = StrMap(Bstr, FristStr, 0);*/
+	StrReplce(Bstr, FristStr, Astr);
+	Print(Bstr);
 }

@@ -14,6 +14,8 @@ int main()
 
 	HString myTeststr;
 	HStrInit(&myTeststr);
+	HStrAssign(&myTeststr, Teststr);
+	HStrPrint(&myTeststr);
 	/*Copy
 	HStrCopied(&myTeststr,&myHStr);
 	HStrPrint(&myHStr);
@@ -40,7 +42,16 @@ int main()
 	HStrInsert(&myHStr, &myTeststr, 2);
 	HStrPrint(&myHStr);
 	*/
+	/*
 	HStrDelete(&myHStr, 2, 7);
 	HStrClear(&myHStr);
+	HStrPrint(&myHStr);*/
+	/*
+	int res = HStrMap(&myHStr, &myTeststr, 0);*/
+	HString Rep;
+	HStrInit(&Rep);
+	HStrAssign(&Rep, "--");
+
+	HStrReplace(&myHStr, &myTeststr, &Rep);
 	HStrPrint(&myHStr);
 }

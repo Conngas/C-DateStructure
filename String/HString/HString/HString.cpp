@@ -147,3 +147,74 @@ void HStrClear(HString* main)
 	main->length = 0;
 	main->ch = NULL;
 }
+
+int	 HStrMap(HString* main, HString* sub, int pos)
+{
+	int i = pos;
+	int j = 0;
+	while (i<main->length && j<sub->length)
+	{
+		if (main->ch[i] == sub->ch[j])
+		{
+			++i;
+			++j;
+		}
+		else
+		{
+			i = i - j + 1;
+			j = 0;
+		}
+	}
+	if (j>=sub->length)return i - j;
+	else return -1;
+}
+
+void HStrReplace(HString* main, HString* sub, HString* rep)
+{
+	int m_len = main->length;
+	int s_len = sub->length;
+	int r_len = sub->length;
+
+	int index = -1;
+	int pos = 0;
+	while (pos<m_len)
+	{
+		index = HStrMap(main, sub, pos);
+		if (index == -1)return;
+		HStrDelete(main, index, s_len);
+		HStrInsert(main, rep, index);
+
+		pos = index + r_len;
+	}
+}
+
+//KMP JAVA Version Uncomplete
+/*
+void KMP(HString* main, HString* sub)
+{
+	int m_len = main->length;
+	int s_len = sub->length;
+	int s_index = 0;
+	int X = 0;
+	//dp array
+	int dp[DPLength][256];
+	
+	dp[0][s_index] = 1;
+	for (int m = 1;m < s_len;++m)
+	{
+		for (int n = 0;n < 256;++n)
+		{
+			dp[m][n] = dp[X][n];
+		}
+		dp[m][s_index]
+	}
+	
+	int j = 0;//j is pointer of sub
+	for (int i = 0;i < m_len;++i)
+	{
+		
+	}
+}
+*/
+
+void KMP(HString* main, HString* sub, int pos);

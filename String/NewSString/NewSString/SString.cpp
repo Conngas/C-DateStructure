@@ -149,7 +149,7 @@ void StrInsert(SString Main, SString Addstr, int pos)
 void StrDelete(SString Main, int pos, int len)
 {
 	int M_len = Length(Main);
-	if (pos <0 || pos >len || len < 0 || len >M_len)return;
+	if (pos <0 || pos >M_len || len < 0 || len >M_len)return;
 	for (int i = pos; i <M_len; ++i)
 	{
 		Main[i] = Main[i + len];
@@ -160,4 +160,50 @@ void StrDelete(SString Main, int pos, int len)
 void StrClear(SString Main)
 {
 	Main[0] = '\0';
+}
+
+int  StrMap(SString Main, SString sub, int pos)
+{
+	int i = pos;
+	int j = 0;
+	while (Main[i] != '\0' && sub[j] != '\0')
+	{
+		if (Main[i] == sub[j])
+		{
+			++i; ++j;
+		}
+		else
+		{
+			i = i - j + 1;
+			j = 0;
+		}
+	}
+	if (sub[j] == '\0')
+	{
+		return i - j;
+	}
+	else
+	{
+		return -1;
+	}
+}
+
+void StrReplce(SString Main, SString sub, SString rep)
+{
+	int m_len = Length(Main);
+	int s_len = Length(sub);
+	int r_len = Length(rep);
+
+	int index = -1;
+	int pos = 0;
+
+	while (pos < m_len)//m_len的长度在开始时已经定了
+	{
+		index = StrMap(Main, sub, pos);
+		if (index == -1)return;
+		StrDelete(Main, index, s_len);
+		StrInsert(Main, rep, index);
+
+		pos = index + r_len;//rlen目的是此时已经在原来pos的位置插入index了因此 index + rlen
+	}
 }

@@ -1,0 +1,2 @@
+E:\Works\CodeWorks\ComputerScience\DS\String\StringMapping\Debug\StringMapping.exe
+E:\Works\CodeWorks\ComputerScience\DS\String\StringMapping\Debug\StringMapping.pdb

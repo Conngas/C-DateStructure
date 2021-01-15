@@ -1,6 +1,3 @@
 ﻿  Main.cpp
 E:\Works\CodeWorks\ComputerScience\DS\String\NewSString\NewSString\Main.cpp(1,9): warning C4067: 预处理器指令后有意外标记 - 应输入换行符
-  SString.cpp
-E:\Works\CodeWorks\ComputerScience\DS\String\NewSString\NewSString\SString.cpp(1,9): warning C4067: 预处理器指令后有意外标记 - 应输入换行符
-  正在生成代码...
   NewSString.vcxproj -> E:\Works\CodeWorks\ComputerScience\DS\String\NewSString\Debug\NewSString.exe
