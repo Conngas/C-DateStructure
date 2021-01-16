@@ -28,7 +28,9 @@ void HStrDelete(HString* main, int pos,int len);
 void HStrClear(HString* main);
 int	 HStrMap(HString* main, HString* sub, int pos);
 void HStrReplace(HString* main, HString* sub, HString* rep);
-void KMP(HString* main, HString* sub);
-void KMP(HString* main, HString* sub,int pos);
+int KMP(HString* main, HString* sub);
+int KMP(HString* main, HString* sub,int pos);
+void BuildNext(HString* sub, int* next);
+void BuildNextval(HString* sub, int* nextval);
 #endif // HSTRING_H
 

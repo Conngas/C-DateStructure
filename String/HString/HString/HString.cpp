@@ -217,4 +217,65 @@ void KMP(HString* main, HString* sub)
 }
 */
 
-void KMP(HString* main, HString* sub, int pos);
+int KMP(HString* main, HString* sub, int pos)
+{
+	int i = 0;int j = 0;
+	const int len = sub->length + 1;
+	//
+
+	//int next[20] = { -1 };
+	//BuildNext(sub, next);
+	//
+	int nextval[20] = { -1 };
+	BuildNextval(sub, nextval);
+
+	while (i < main->length && j < sub->length)
+	{
+		if (main->ch[i] == sub->ch[j] || j == -1)
+		{
+			++i;++j;
+		}
+		else
+		{
+			j = nextval[j];
+			//
+			//j = next[j];
+		}
+	}
+	if (j >= sub->length)return i - j;
+	else return -1;
+}
+
+void BuildNext(HString* sub, int* next)
+{
+	int x = -1;int y = 0;
+	while (y < sub->length)
+	{
+		if (sub->ch[x] == sub->ch[y] || x == -1)
+		{
+			next[++y] = ++x;
+		}
+		else
+		{
+			//Back
+			x = next[x];
+		}
+	}
+}
+
+void BuildNextval(HString* sub, int* nextval)
+{
+	int x = -1;int y = 0;
+	while (y < sub->length)
+	{
+		if (sub->ch[x] == sub->ch[y] || x == -1)
+		{
+			if (sub->ch[x] != sub->ch[y])nextval[++y] = ++x;
+			else nextval[++y] = nextval[++x];
+		}
+		else
+		{
+			x = nextval[x];
+		}
+	}
+}

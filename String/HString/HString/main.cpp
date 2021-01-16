@@ -48,10 +48,12 @@ int main()
 	HStrPrint(&myHStr);*/
 	/*
 	int res = HStrMap(&myHStr, &myTeststr, 0);*/
+	/*
 	HString Rep;
 	HStrInit(&Rep);
 	HStrAssign(&Rep, "--");
 
 	HStrReplace(&myHStr, &myTeststr, &Rep);
-	HStrPrint(&myHStr);
+	HStrPrint(&myHStr);*/
+	int res = KMP(&myHStr, &myTeststr, 0);
 }
