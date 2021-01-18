@@ -1,0 +1,2 @@
+E:\Works\CodeWorks\ComputerScience\DS\Matrix\SparseMatrix\Debug\SparseMatrix.exe
+E:\Works\CodeWorks\ComputerScience\DS\Matrix\SparseMatrix\Debug\SparseMatrix.pdb
