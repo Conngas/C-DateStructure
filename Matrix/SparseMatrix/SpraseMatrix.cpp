@@ -56,3 +56,66 @@ void CopyMatrix(SMatrix* Copy, SMatrix* Paste)
 		Paste->data[i].r = Copy->data[i].r;
 	}
 }
+
+void TransposeMatrix(SMatrix* M, SMatrix* T)
+{
+	T->c_num = M->r_num;
+	T->r_num = M->c_num;
+	T->nz_num = M->nz_num;
+
+	int k = 0;
+	if (M->nz_num != 0)
+	{
+		for (int col = 0;col < M->c_num;++col)
+		{
+			for (int nz_num = 0;nz_num < M->nz_num;++nz_num)
+			{
+				if (M->data[nz_num].c == col)
+				{
+					T->data[k].c = M->data[nz_num].r;
+					T->data[k].r = M->data[nz_num].c;
+					T->data[k].e = M->data[nz_num].e;
+					++k;
+				}
+			}
+		}
+	}
+}
+
+void FastTransposeMatrix(SMatrix* M, SMatrix* T)
+{
+	T->c_num = M->r_num;
+	T->r_num = M->c_num;
+	T->nz_num = M->nz_num;
+
+	int* num = (int*)malloc(sizeof(int) * M->nz_num);
+	assert(num != 0);
+	int* copt = (int*)malloc(sizeof(int) * M->nz_num);
+	assert(copt != 0);
+	memset(num, 0, sizeof(int) * M->nz_num);
+	memset(copt, 0, sizeof(int) * M->nz_num);
+
+	if (M->nz_num != 0)
+	{
+		for (int pos = 0;pos < M->nz_num;++pos)//
+		{
+			num[M->data[pos].c]++;
+		}
+		for (int add = 1;add < M->nz_num;++add)
+		{
+			copt[add] = copt[add - 1] + num[add - 1];
+		}
+	}
+	int q = 0;
+	for (int i = 0;i < M->nz_num;++i)
+	{
+		int col = M->data[i].c;
+		q = copt[col];
+		T->data[q].c = M->data[i].r;
+		T->data[q].r = M->data[i].c;
+		T->data[q].e = M->data[i].e;
+		copt[col]++;
+	}
+	free(copt);
+	free(num);
+}

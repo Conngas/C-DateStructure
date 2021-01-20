@@ -4,6 +4,7 @@
 #include<stdio.h>
 #include<memory.h>
 #include<stdlib.h>
+#include<assert.h>
 #define ElemType int
 #define MAXSIZE 100
 
@@ -20,7 +21,7 @@ typedef struct SMatrix
 	int r_num;
 	int c_num;
 	int nz_num;
-};
+}SMatrix;
 
 int CreateMatrix(SMatrix* sm);
 void PrintMatrix(SMatrix* sm);
@@ -28,6 +29,7 @@ void CopyMatrix(SMatrix* Copy, SMatrix* Paste);
 void SubMatrix(SMatrix* A, SMatrix* B);
 void SupMatrix(SMatrix* A, SMatrix* B);
 void MulMatrix(SMatrix* A, SMatrix* B);
-void 
+void TransposeMatrix(SMatrix* M, SMatrix* T);
+void FastTransposeMatrix(SMatrix* M, SMatrix* T);
 #endif // SPAREMATRIX_H
 

@@ -1,6 +1,2 @@
 ﻿  SpraseMatrix.cpp
-E:\Works\CodeWorks\ComputerScience\DS\Matrix\SparseMatrix\SparseMatrix.h(23,2): warning C4091: “typedef ”: 没有声明变量时忽略“SMatrix”的左侧
-  main.cpp
-E:\Works\CodeWorks\ComputerScience\DS\Matrix\SparseMatrix\SparseMatrix.h(23,2): warning C4091: “typedef ”: 没有声明变量时忽略“SMatrix”的左侧
-  正在生成代码...
   SparseMatrix.vcxproj -> E:\Works\CodeWorks\ComputerScience\DS\Matrix\SparseMatrix\Debug\SparseMatrix.exe

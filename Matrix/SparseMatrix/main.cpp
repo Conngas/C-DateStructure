@@ -8,6 +8,15 @@ int main()
 	PrintMatrix(&sm);
 
 	//CopyTest
+	/*
 	CopyMatrix(&sm, &sm1);
+	PrintMatrix(&sm1);
+	*/
+	//TransposeMatrix 1
+	/*
+	TransposeMatrix(&sm, &sm1);
+	PrintMatrix(&sm1);*/
+	//FastTransposeMatrix 2
+	FastTransposeMatrix(&sm, &sm1);
 	PrintMatrix(&sm1);
 }
