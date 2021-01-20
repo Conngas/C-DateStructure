@@ -1,0 +1,6 @@
+﻿  GenList.cpp
+E:\Works\CodeWorks\ComputerScience\DS\GenList\GenList\GenList.h(18,2): warning C4091: “typedef ”: 没有声明变量时忽略“GLNode”的左侧
+  main.cpp
+E:\Works\CodeWorks\ComputerScience\DS\GenList\GenList\GenList.h(18,2): warning C4091: “typedef ”: 没有声明变量时忽略“GLNode”的左侧
+  正在生成代码...
+  GenList.vcxproj -> E:\Works\CodeWorks\ComputerScience\DS\GenList\GenList\Debug\GenList.exe

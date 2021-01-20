@@ -1,0 +1,2 @@
+E:\Works\CodeWorks\ComputerScience\DS\GenList\GenList\Debug\GenList.exe
+E:\Works\CodeWorks\ComputerScience\DS\GenList\GenList\Debug\GenList.pdb
