@@ -83,7 +83,7 @@ bool serve(char* sub, char* hsub)
 		strcpy_s(sub, n - barrier + 2, sub + barrier + 1);
 	}
 
-	else if (zeroJudge != 0) return false;
+	else if (zeroJudge != 0) exit(1);
 	else
 	{
 		strcpy_s(hsub, n + 1, sub);
@@ -92,4 +92,88 @@ bool serve(char* sub, char* hsub)
 	}
 
 	return true;
+}
+
+void ShowGenList(GenList& gl)
+{
+	GenList p = gl->tp;
+	printf("(");
+	while (p != NULL)
+	{
+		if (p->tag == AUTO)
+		{
+			printf("%d", p->atom);
+			if (p->tp != NULL) printf(",");
+			p = p->tp;
+		}
+		else if (p->tag == CHILDLIST)
+		{
+			ShowGenList(p->hp);
+			if(p->tp!=NULL)	printf(",");
+			p = p->tp;
+		}
+	}
+
+	printf(")");
+}
+
+bool GenListEmpty(GenList& gl)
+{
+	return gl->tp == NULL;
+}
+
+int  GenListLength(GenList& gl)
+{
+	int length=0;
+	GLNode* p = gl->tp;
+	while(p != NULL)
+	{
+		++length;
+		p = p->tp;
+	}
+	return length;
+}
+
+int GenListDepth(GenList& gl)
+{
+	if (gl == NULL) return 1;
+	int MaxDepth = 0;
+	int dep = 0;
+	GLNode* p = gl->tp;
+	while (p != NULL)
+	{
+		if (p->tag == CHILDLIST)
+		{
+			dep =  GenListDepth(p->hp->tp);
+			if (dep > MaxDepth)	MaxDepth = dep;
+		}
+		p = p->tp;
+	}
+	return MaxDepth + 1;
+}
+
+void ClearGenList(GenList& gl)
+{
+	if (gl == NULL)	return;
+	GLNode* p = gl->tp;
+	GLNode* lp = NULL;
+	free(gl);//删除头节点,并置空
+	//gl = NULL;
+	while (p != NULL)
+	{
+		if (p->tp != NULL)	lp = p->tp;
+		else lp = NULL;
+		if (p->tag == AUTO)
+		{
+			free(p);
+			p = lp;
+		}
+		else if (p->tag == CHILDLIST)
+		{
+			ClearGenList(p->hp);
+			free(p);
+			p = lp;
+		}
+	}
+
 }

@@ -26,6 +26,11 @@ typedef GLNode* GenList;
 void GLInit(GenList& gl);
 void CreateGenList(GenList& gl, const char* str);
 bool serve(char* sub, char* hsub);
+void ShowGenList(GenList& gl);
+bool GenListEmpty(GenList& gl);
+int  GenListLength(GenList& gl);
+int GenListDepth(GenList& gl);
+void ClearGenList(GenList& gl);
 
 #endif // !GENLIST_H
 

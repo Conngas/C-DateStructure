@@ -1,2 +1,4 @@
-﻿  main.cpp
+﻿  GenList.cpp
+H:\CodeWorks\ComputerScience\DS\GenList\GenList\GenList.cpp(10,21): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+H:\CodeWorks\ComputerScience\DS\GenList\GenList\GenList.cpp(65,21): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
   GenList.vcxproj -> H:\CodeWorks\ComputerScience\DS\GenList\GenList\x64\Debug\GenList.exe
