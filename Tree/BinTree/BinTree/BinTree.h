@@ -29,10 +29,17 @@ void CreateBinTree(BinTree* bt);
 void CreateBinTree(BinTree* bt, BinTreeNode** node);
 
 void CreateBinTree_C(BinTree* bt);
-void CreateBinTree_C(BinTree* bt, ToChild node);
+void CreateBinTree_C_1(BinTree* bt, ToChild* node);
+void CreateBinTree_C_2(BinTree* bt);
 
 void CreateBinTree_Cpp(BinTree* bt);
 void CreateBinTree_Cpp(BinTree* bt, BinTreeNode*& node);
+
+void CreateBinTree_Node(BinTree* bt);
+BinTreeNode* CreateBinTree_Node_(BinTree* bt);
+
+void CreateBinTree_Str(BinTree* bt,const char*str);
+void CreateBinTree_Str(BinTree* bt, BinTreeNode*& node, const char* &str);
 
 #endif // !BINTREE_H_
 
