@@ -1,4 +1,5 @@
 #include"BinTree.h"
+#include"Queue.h"
 
 void InitBinTree(BinTree* bt, ElemType ref)
 {
@@ -141,3 +142,68 @@ void CreateBinTree_Str(BinTree* bt, BinTreeNode*& node, const char* &str)
 	}
 }
 
+void PreOrder(BinTree* bt)
+{
+	PreOrderNode(bt->Root);
+}
+void PreOrderNode(BinTreeNode* node)
+{
+	if (node != NULL)
+	{
+		printf("%c", node->data);
+		PreOrderNode(node->LeftChild);
+		PreOrderNode(node->RightChild);
+	}
+}
+
+void InOrder(BinTree* bt)
+{
+	InOrderNode(bt->Root);
+}
+void InOrderNode(BinTreeNode* node)
+{
+	if (node != NULL)
+	{
+		PreOrderNode(node->LeftChild);
+		printf("%c", node->data);
+		PreOrderNode(node->RightChild);
+	}
+}
+
+void PostOrder(BinTree* bt)
+{
+	PostOrderNode(bt->Root);
+}
+void PostOrderNode(BinTreeNode* node)
+{
+	if (node != NULL)
+	{
+		PreOrderNode(node->LeftChild);
+		PreOrderNode(node->RightChild);
+		printf("%c", node->data);
+	}
+}
+
+void LevelOrder(BinTree* bt)
+{
+	LevelOrderNode(bt->Root);
+}
+void LevelOrderNode(BinTreeNode* node)
+{
+	if (node != NULL)
+	{
+		BinTreeNode* v=NULL;
+		SeqQueue TempQueue;
+		InitSeqQueueFun(&TempQueue);
+		EnSeqQueueFun(&TempQueue, node);
+		while(!SeqQueueIsEmpty(&TempQueue))
+		{
+			GetHead(&TempQueue, &v);
+			DeSeqQueueFun(&TempQueue);
+			//printf("%c", v->data);
+			printf_s("%c", v->data);
+			if (v->LeftChild != NULL)EnSeqQueueFun(&TempQueue, v->LeftChild);
+			if (v->RightChild != NULL)EnSeqQueueFun(&TempQueue, v->RightChild);
+		}
+	}
+}

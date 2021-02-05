@@ -8,4 +8,9 @@ int main()
 
 	//CreateBinTree_Node(&MyBinTree);
 	CreateBinTree_Str(&MyBinTree, BTInfo);
+
+	//PreOrder(&MyBinTree);
+
+	LevelOrder(&MyBinTree);
+
 }
