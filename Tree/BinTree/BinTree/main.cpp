@@ -11,6 +11,18 @@ int main()
 
 	//PreOrder(&MyBinTree);
 
-	LevelOrder(&MyBinTree);
+	//LevelOrder(&MyBinTree);
 
+	printf("%d\n", Size(&MyBinTree));
+	printf("%d\n", Height(&MyBinTree));
+
+	BinTreeNode* b = Search(&MyBinTree, 'F');
+	BinTreeNode* p = Parent(&MyBinTree, b);
+
+	BinTree YourBinTree;
+	InitBinTree(&YourBinTree, '#');
+
+	Copy(&MyBinTree, &YourBinTree);
+
+	Clear(&YourBinTree);
 }

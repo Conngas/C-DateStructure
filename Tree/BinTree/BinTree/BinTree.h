@@ -24,7 +24,7 @@ typedef struct BinTree
 	ElemType refvalue;//Stop Flag
 };
 
-
+//Init
 void InitBinTree(BinTree* bt, ElemType ref);
 void CreateBinTree(BinTree* bt);
 void CreateBinTree(BinTree* bt, BinTreeNode** node);
@@ -51,6 +51,29 @@ void PostOrderNode(BinTreeNode* node);
 void LevelOrder(BinTree* bt);
 void LevelOrderNode(BinTreeNode* node);
 
+//Function
+int Size(BinTree* bt);
+int Size(BinTreeNode* node);
+
+int Height(BinTree* bt);
+int Height(BinTreeNode* node);
+
+BinTreeNode* Search(BinTree* bt,ElemType key);
+BinTreeNode* Search(BinTreeNode*node, ElemType key);
+
+BinTreeNode* Parent(BinTree* bt, BinTreeNode* node);
+BinTreeNode* Parent(BinTreeNode* bt, BinTreeNode* node);
+
+BinTreeNode* LeftChild(BinTreeNode* node);
+BinTreeNode* RightChild(BinTreeNode* node);
+
+bool IsEmpty(BinTree* bt);
+
+void Copy(BinTree* s,BinTree* d);
+void Copy(BinTreeNode*& source, BinTreeNode*& destination);
+
+void Clear(BinTree* bt);
+void Clear(BinTreeNode*& node);
 #endif // !BINTREE_H_
 
 

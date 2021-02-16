@@ -207,3 +207,117 @@ void LevelOrderNode(BinTreeNode* node)
 		}
 	}
 }
+
+//Fuction
+int Size(BinTree* bt)
+{
+	return Size(bt->Root);
+}
+
+int Size(BinTreeNode* node)
+{
+	if (node == NULL)	return 0;
+	else
+	{
+		return (Size(node->LeftChild) + Size(node->RightChild)) + 1;
+	}
+}
+
+int Height(BinTree* bt)
+{
+	return Height(bt->Root);
+}
+
+int Height(BinTreeNode* node)
+{
+	if (node == NULL)return 0;
+	else
+	{
+		int Left_h = Height(node->LeftChild);
+		int Right_h = Height(node->RightChild);
+		return (Left_h > Right_h ? Left_h:Right_h) + 1;
+	}
+}
+
+BinTreeNode* Search(BinTree* bt, ElemType key)
+{
+	return Search(bt->Root,key);
+}
+
+BinTreeNode* Search(BinTreeNode* node,ElemType key)
+{
+	if (node == NULL)return NULL;
+	if (node->data == key)return node;
+	
+	BinTreeNode* p = Search(node->LeftChild, key);
+	if (p != NULL)return p;
+	else return Search(node->RightChild, key);
+}
+
+BinTreeNode* Parent(BinTree* bt, BinTreeNode* node)
+{
+	return Parent(bt->Root, node);
+}
+
+BinTreeNode* Parent(BinTreeNode* bt, BinTreeNode* node)
+{
+	if (bt == NULL || node == NULL)return NULL;
+	if (bt->LeftChild == node || bt->RightChild == node)return bt;
+
+	BinTreeNode* q = Parent(bt->LeftChild, node);
+	if (q != NULL)return q;
+
+	return Parent(bt->RightChild, node);
+}
+
+BinTreeNode* LeftChild(BinTreeNode* node)
+{
+	if (node != NULL)return node->LeftChild;
+	else return NULL;
+}
+
+BinTreeNode* RightChild(BinTreeNode* node)
+{
+	if (node != NULL)return node->RightChild;
+	else return NULL;
+}
+
+bool IsEmpty(BinTree* bt)
+{
+	return bt->Root == NULL;
+}
+
+void Copy(BinTree* s, BinTree* d)
+{
+	Copy(s->Root, d->Root);
+}
+
+void Copy(BinTreeNode*& source, BinTreeNode*& destination)
+{
+	if (source == NULL)destination = NULL;
+	else
+	{
+		destination = (BinTreeNode*)malloc(sizeof(BinTreeNode));
+		assert(destination != NULL);
+		destination->data = source->data;
+		Copy(source->LeftChild, destination->LeftChild);
+		Copy(source->RightChild, destination->RightChild);
+	}
+
+}
+
+void Clear(BinTree* bt)
+{
+	Clear(bt->Root);
+}
+
+void Clear(BinTreeNode*& node)
+{
+	if (node != NULL)
+	{
+		Clear(node->LeftChild);
+		Clear(node->RightChild);
+		free(node);
+		node = NULL;
+	}
+}
