@@ -13,7 +13,8 @@ int main()
 
 	//LevelOrder(&MyBinTree);
 
-	printf("%d\n", Size(&MyBinTree));
+	//适用于树的其他操作
+	/*printf("%d\n", Size(&MyBinTree));
 	printf("%d\n", Height(&MyBinTree));
 
 	BinTreeNode* b = Search(&MyBinTree, 'F');
@@ -24,5 +25,11 @@ int main()
 
 	Copy(&MyBinTree, &YourBinTree);
 
-	Clear(&YourBinTree);
+	Clear(&YourBinTree);*/
+
+	//非遍历二叉树搜索
+	NoPreOrder(&MyBinTree);
+	printf("\n");
+	NoInOrder(&MyBinTree);
+	printf("\n");
 }

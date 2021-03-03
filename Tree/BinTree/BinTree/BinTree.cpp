@@ -1,5 +1,6 @@
 #include"BinTree.h"
 #include"Queue.h"
+#include"LinkStack.h"
 
 void InitBinTree(BinTree* bt, ElemType ref)
 {
@@ -321,3 +322,73 @@ void Clear(BinTreeNode*& node)
 		node = NULL;
 	}
 }
+
+//NoOrderSeq
+
+void NoPreOrder(BinTree* bt)
+{
+	NoPreOrderNode(bt->Root);
+}
+
+void NoPreOrderNode(BinTreeNode* node)
+{
+	MyNode MyStack;
+	LinkStackInitFun(&MyStack);
+	BinTreeNode* p;
+	Push(&MyStack, node);
+	if (node != NULL)
+	{
+		while (!IsEmpty(&MyStack))
+		{
+			GetTopElem(&MyStack, &p);
+			Pop(&MyStack);
+			printf("%c", p->data);
+			if (p->RightChild != NULL)
+				Push(&MyStack, p->RightChild);
+			if (p->LeftChild != NULL)
+				Push(&MyStack, p->LeftChild);
+		}
+	}
+}
+
+void NoInOrder(BinTree* bt)
+{
+	NoInOrderNode(bt->Root);
+}
+void NoInOrderNode(BinTreeNode* node)
+{
+	if (node != NULL)
+	{
+		MyNode MyStack;
+		LinkStackInitFun(&MyStack);
+		BinTreeNode* p;
+		Push(&MyStack, node);
+		while (!IsEmpty(&MyStack))
+		{
+			while (node!=NULL && node->LeftChild != NULL)
+			{
+				Push(&MyStack,node->LeftChild);
+				node = node->LeftChild;
+			}
+
+			GetTopElem(&MyStack, &p);
+			Pop(&MyStack);
+			printf("%c", p->data);
+
+			if (p->RightChild != NULL)
+			{
+				node = p->RightChild;
+				if (node != NULL)
+					Push(&MyStack, node);
+			}
+		}
+	}
+}
+
+void NoPostOrder(BinTree* bt)
+{
+
+}
+void NoPostOrderNode(BinTreeNode* node);
+void NoLevelOrder(BinTree* bt);
+void NoLevelOrderNode(BinTreeNode* node);

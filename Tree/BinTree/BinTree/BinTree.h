@@ -74,6 +74,16 @@ void Copy(BinTreeNode*& source, BinTreeNode*& destination);
 
 void Clear(BinTree* bt);
 void Clear(BinTreeNode*& node);
+
+//NoOrder
+void NoPreOrder(BinTree* bt);
+void NoPreOrderNode(BinTreeNode* node);
+void NoInOrder(BinTree* bt);
+void NoInOrderNode(BinTreeNode* node);
+void NoPostOrder(BinTree* bt);
+void NoPostOrderNode(BinTreeNode* node);
+void NoLevelOrder(BinTree* bt);
+void NoLevelOrderNode(BinTreeNode* node);
 #endif // !BINTREE_H_
 
 

@@ -1,0 +1,6 @@
+﻿  PostOrder.cpp
+H:\CodeWorks\ComputerScience\DS\Tree\BinTree-NonPostOrder\stack.h(79,10): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“StrkNode”
+H:\CodeWorks\ComputerScience\DS\Tree\BinTree-NonPostOrder\stack.h(86,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“StrkNode”
+H:\CodeWorks\ComputerScience\DS\Tree\BinTree-NonPostOrder\stack.h(124,10): warning C4477: “printf”: 格式字符串“%c”需要类型“int”的参数，但可变参数 1 拥有了类型“StrkNode”
+H:\CodeWorks\ComputerScience\DS\Tree\BinTree-NonPostOrder\PostOrder.cpp(23,2): warning C4091: “typedef ”: 没有声明变量时忽略“BinTree”的左侧
+  BinTree-NonPostOrder.vcxproj -> H:\CodeWorks\ComputerScience\DS\Tree\BinTree-NonPostOrder\Debug\BinTree-NonPostOrder.exe
