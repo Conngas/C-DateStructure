@@ -7,5 +7,17 @@ int main()
 	InitTreadTree(&MyTree, '#');
 	CreateThreadTree(&MyTree, TreeCode);
 	CreateInThread(&MyTree);
-
+	
+	/*
+	ThreadTreeNode* p;
+	p = LastNode(&MyTree);
+	printf("%c", p->data);
+	*/
+	/*
+	//Order Test
+	InOrder(&MyTree);
+	*/
+	//Search Test
+	ThreadTreeNode* bt = Search(&MyTree, 'D');
+	ThreadTreeNode* parent = Parents(&MyTree, bt);
 }
