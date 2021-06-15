@@ -165,9 +165,9 @@ void InOrderNode(BinTreeNode* node)
 {
 	if (node != NULL)
 	{
-		PreOrderNode(node->LeftChild);
+		InOrderNode(node->LeftChild);
 		printf("%c", node->data);
-		PreOrderNode(node->RightChild);
+		InOrderNode(node->RightChild);
 	}
 }
 
@@ -179,8 +179,8 @@ void PostOrderNode(BinTreeNode* node)
 {
 	if (node != NULL)
 	{
-		PreOrderNode(node->LeftChild);
-		PreOrderNode(node->RightChild);
+		PostOrderNode(node->LeftChild);
+		PostOrderNode(node->RightChild);
 		printf("%c", node->data);
 	}
 }
@@ -385,10 +385,57 @@ void NoInOrderNode(BinTreeNode* node)
 	}
 }
 
-void NoPostOrder(BinTree* bt)
+/// Restore BinTree
+void CreateBinTree_VLR(BinTree* bt, const char* VLR, const char* LVR, int num)
 {
+	CreateBinTree_VLR_Node(bt->Root, VLR, LVR, num);
+}
+
+void CreateBinTree_VLR_Node(BinTreeNode*& node, const char* VLR, const char* LVR, int num)
+{
+	if (num == 0)
+		node = NULL;
+	else
+	{
+		int k = 0;
+		while (LVR[k]!=VLR[0])
+		{
+			k++;
+		}
+		
+		BinTreeNode* V = (BinTreeNode*)malloc(sizeof(BinTreeNode));
+		assert(V != NULL);
+		V->data = LVR[k];
+
+		CreateBinTree_VLR_Node(V->LeftChild, VLR + 1, LVR, k);
+		CreateBinTree_VLR_Node(V->RightChild, VLR + k + 1, LVR + k + 1, num - k - 1);
+	}
 
 }
-void NoPostOrderNode(BinTreeNode* node);
-void NoLevelOrder(BinTree* bt);
-void NoLevelOrderNode(BinTreeNode* node);
+
+void CreateBinTree_LRV(BinTree* bt, const char* LRV, const char* LVR, int num)
+{
+	CreateBinTree_LRV_Node(bt->Root, LRV, LVR, num);
+}
+
+void CreateBinTree_LRV_Node(BinTreeNode*& node, const char* LRV, const char* LVR, int num)
+{
+	if (num == 0)
+		node = NULL;
+	else
+	{
+		int k = 0;
+		while (LRV[num - 1] != LVR[k])
+		{
+			k++;
+		}
+
+		BinTreeNode* V = (BinTreeNode*)malloc(sizeof(BinTreeNode));
+		assert(V!=NULL);
+		V->data = LVR[k];
+
+		CreateBinTree_LRV_Node(node->RightChild, LRV + k, LVR + k + 1, num - k - 1);
+		CreateBinTree_LRV_Node(node->LeftChild, LRV, LVR, k);
+	}
+
+}

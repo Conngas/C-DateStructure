@@ -9,7 +9,12 @@ int main()
 	//CreateBinTree_Node(&MyBinTree);
 	CreateBinTree_Str(&MyBinTree, BTInfo);
 
-	//PreOrder(&MyBinTree);
+	PreOrder(&MyBinTree);
+	printf("\t");
+	InOrder(&MyBinTree);
+	printf("\t");
+	PostOrder(&MyBinTree);
+	printf("\n");
 
 	//LevelOrder(&MyBinTree);
 
@@ -28,8 +33,23 @@ int main()
 	Clear(&YourBinTree);*/
 
 	//·Ç±éÀú¶þ²æÊ÷ËÑË÷
-	NoPreOrder(&MyBinTree);
+	/*NoPreOrder(&MyBinTree);
 	printf("\n");
 	NoInOrder(&MyBinTree);
 	printf("\n");
+	*/
+
+	const char* VLR = "ABCDEFGH";
+	const char* LVR = "CBEDFAGH";
+	const char* LRV = "CEFDBHGA";
+	int n = strlen(VLR);
+
+	//CreateBinTree_VLR(&MyBinTree, VLR, LVR, n);
+	CreateBinTree_LRV(&MyBinTree, LRV, LVR, n);
+	PreOrder(&MyBinTree);
+	printf("\t");
+	InOrder(&MyBinTree);
+	printf("\t");
+	PostOrder(&MyBinTree);
+	printf("\t");
 }

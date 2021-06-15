@@ -84,6 +84,13 @@ void NoPostOrder(BinTree* bt);
 void NoPostOrderNode(BinTreeNode* node);
 void NoLevelOrder(BinTree* bt);
 void NoLevelOrderNode(BinTreeNode* node);
+
+//Restort BinTree
+void CreateBinTree_VLR(BinTree* bt,const char* VLR,const char* LVR,int num);
+void CreateBinTree_VLR_Node(BinTreeNode*& node, const char* VLR, const char* LVR, int num);
+
+void CreateBinTree_LRV(BinTree* bt, const char* LRV, const char* LVR, int num);
+void CreateBinTree_LRV_Node(BinTreeNode*& node, const char* LRV, const char* LVR, int num);
 #endif // !BINTREE_H_
 
 
