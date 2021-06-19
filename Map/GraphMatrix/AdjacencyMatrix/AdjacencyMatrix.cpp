@@ -28,13 +28,28 @@ void InitGraph(SAdjacnecyMatrix* pSAdjMatrix)
 
 void ShowGraph(SAdjacnecyMatrix* pSAdjMatrix)
 {
+	printf("   ");
+	for(int m = 0; m < pSAdjMatrix->iNumVertices; ++m)
+	{
+		printf("%c  ", pSAdjMatrix->pDVerticesList[m]);
+	}
+	printf("\n");
 	for (int i = 0; i < pSAdjMatrix->iNumVertices; ++i)
 	{
+		printf("%c  ", pSAdjMatrix->pDVerticesList[i]);
 		for (int j = 0; j < pSAdjMatrix->iNumVertices; ++j)
 		{
-			printf("%d", pSAdjMatrix->ppiEdge[i][j]);
+			printf("%d  ", pSAdjMatrix->ppiEdge[i][j]);
 		}
 		printf("\n");
 	}
 	printf("\n");
 }
+
+void InsertVertics(SAdjacnecyMatrix* pSAdjMtrix, VerList DVer)
+{
+	if (pSAdjMtrix->iNumVertices >= pSAdjMtrix->iMaxVertices)
+		return;
+	pSAdjMtrix->pDVerticesList[pSAdjMtrix->iNumVertices++] = DVer;
+}
+
