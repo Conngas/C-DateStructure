@@ -15,8 +15,22 @@ int main()
 	InsertEdge(&SMyGraph, 'B', 'C');
 	InsertEdge(&SMyGraph, 'B', 'E');
 	InsertEdge(&SMyGraph, 'C', 'D');
+	InsertEdge(&SMyGraph, 'C', 'E');
 	ShowGraph(&SMyGraph);
+
+	printf("%d\n", GetFirstNeighborVertice(&SMyGraph, 'D'));
+	printf("%d\n", GetNextNeighborVertice(&SMyGraph, 'D','C'));
+
 
 	RemoveEdge(&SMyGraph, 'B', 'C');
 	ShowGraph(&SMyGraph);
+
+	RemoveVertice(&SMyGraph, 'C');
+	ShowGraph(&SMyGraph);
+
+	//RemoveVerticeFast(&SMyGraph, 'C');
+	//ShowGraph(&SMyGraph);
+
+
+	DestoryGraph(&SMyGraph);
 }
