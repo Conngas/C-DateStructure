@@ -53,3 +53,38 @@ void InsertVertics(SAdjacnecyMatrix* pSAdjMtrix, VerList DVer)
 	pSAdjMtrix->pDVerticesList[pSAdjMtrix->iNumVertices++] = DVer;
 }
 
+void InsertEdge(SAdjacnecyMatrix* pSAdjMtrix, VerList DverFirst, VerList DverSecond)
+{
+	int iVerPosF = GetVerticePos(pSAdjMtrix,DverFirst);
+	int iVerPosS = GetVerticePos(pSAdjMtrix,DverSecond);
+	if (iVerPosF == -1 || iVerPosS == -1)
+		return;
+
+	pSAdjMtrix->ppiEdge[iVerPosF][iVerPosS] = pSAdjMtrix->ppiEdge[iVerPosS][iVerPosF] = 1;
+	pSAdjMtrix->iNumEdges++;
+}
+
+void RemoveEdge(SAdjacnecyMatrix* pSAdjMtrix, VerList DverFirst, VerList DverSecond)
+{
+	int iVerPosF = GetVerticePos(pSAdjMtrix, DverFirst);
+	int iVerPosS = GetVerticePos(pSAdjMtrix, DverSecond);
+	if (iVerPosF == -1 || iVerPosS == -1)
+		return;
+
+	if (pSAdjMtrix->ppiEdge[iVerPosF][iVerPosS] == 0)
+		return;
+
+	pSAdjMtrix->ppiEdge[iVerPosF][iVerPosS] = pSAdjMtrix->ppiEdge[iVerPosS][iVerPosF] = 0;
+	pSAdjMtrix->iNumEdges--;
+}
+
+int  GetVerticePos(SAdjacnecyMatrix* pSAdjMtrix, VerList Dver)
+{
+	for (int i = 0; i < pSAdjMtrix->iNumVertices; ++i)
+	{
+		if (pSAdjMtrix->pDVerticesList[i] == Dver)
+			return i;
+	}
+	return -1;
+}
+

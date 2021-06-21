@@ -21,5 +21,6 @@ void InsertVertics(SAdjacnecyMatrix* pSAdjMtrix,VerList DVer);
 void InsertEdge(SAdjacnecyMatrix* pSAdjMatrix, VerList DverFirst, VerList DverSecond);
 void RemoveVertice(SAdjacnecyMatrix* pSAdjMtrix, VerList DVer);
 void RemoveEdge(SAdjacnecyMatrix* pSAdjMtrix, VerList DverFirst, VerList DeverSecond);
+int  GetVerticePos(SAdjacnecyMatrix* pSAdjMtrix, VerList Dver);
 int	 GetFirstNeighborVertice(SAdjacnecyMatrix* pSAdjMtrix, VerList Dver);
 int  GetNextNeighborEdge(SAdjacnecyMatrix* psAdjMtrix, VerList DverFirst, VerList DeverSecond);

@@ -1,2 +1,4 @@
 H:\CodeWorks\ComputerScience\DS\Map\GraphMatrix\AdjacencyMatrix\Debug\AdjacencyMatrix.exe
 H:\CodeWorks\ComputerScience\DS\Map\GraphMatrix\AdjacencyMatrix\Debug\AdjacencyMatrix.pdb
+E:\Works\CodeWorks\ComputerScience\DS\Map\GraphMatrix\AdjacencyMatrix\Debug\AdjacencyMatrix.exe
+E:\Works\CodeWorks\ComputerScience\DS\Map\GraphMatrix\AdjacencyMatrix\Debug\AdjacencyMatrix.pdb
