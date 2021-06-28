@@ -60,6 +60,53 @@ void InsertEdge(AdjacencyList* pAdjList, Ver DFver, Ver DSver)
 	pAdjList->pVerticeList[iSVerPos].pDAdjLink = pTempEdge;
 }
 
+void RemoveEdge(AdjacencyList* pAdjList, Ver DFver, Ver DSver)
+{
+	int iDFver = GetVerticePos(pAdjList, DFver);
+	int iDSver = GetVerticePos(pAdjList, DSver);
+	if (iDFver == -1 || iDSver == -1)
+		return;
+
+	Edge* pBackEdge = NULL;
+	Edge* pFrontEdge;
+	pFrontEdge = pAdjList->pVerticeList[iDFver].pDAdjLink;
+	while (pFrontEdge!=NULL && pFrontEdge->sDest!=DSver)
+	{
+		pBackEdge = pFrontEdge;
+		pFrontEdge = pFrontEdge->pDLink;
+	}
+	if (pFrontEdge == NULL)
+		return;
+	if (pBackEdge == NULL)//说明节点为第一个，此时的PF还没有被赋值，让头节点赋值给下一个
+	{
+		pAdjList->pVerticeList[iDFver].pDAdjLink = pFrontEdge->pDLink;
+	}
+	else
+	{
+		pBackEdge->pDLink = pFrontEdge->pDLink; 
+	}
+	free(pFrontEdge);
+
+	//DSver>DFver
+	pBackEdge = NULL;
+	pFrontEdge = pAdjList->pVerticeList[iDSver].pDAdjLink;
+	while (pFrontEdge != NULL && pFrontEdge->sDest != DFver)
+	{
+		pBackEdge = pFrontEdge;
+		pFrontEdge = pFrontEdge->pDLink;
+	}
+	
+	if (pBackEdge == NULL)
+	{
+		pAdjList->pVerticeList[iDSver].pDAdjLink = pFrontEdge->pDLink;
+	}
+	else
+	{
+		pBackEdge->pDLink = pFrontEdge->pDLink;
+	}
+	free(pFrontEdge);
+}
+
 int	 GetVerticePos(AdjacencyList* pAdjList, Ver Dver)
 {
 	for (int i = 0;i < pAdjList->iVerticeNum;++i)

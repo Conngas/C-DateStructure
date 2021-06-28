@@ -16,5 +16,7 @@ int main()
 	InsertEdge(&MyAdjList, 'B', 'E');
 	InsertEdge(&MyAdjList, 'C', 'D');
 	InsertEdge(&MyAdjList, 'C', 'E');
+
+	RemoveEdge(&MyAdjList, 'B', 'C');
 	ShowAdjList(&MyAdjList);
 }
