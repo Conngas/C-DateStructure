@@ -70,13 +70,17 @@ void RemoveEdge(AdjacencyList* pAdjList, Ver DFver, Ver DSver)
 	Edge* pBackEdge = NULL;
 	Edge* pFrontEdge;
 	pFrontEdge = pAdjList->pVerticeList[iDFver].pDAdjLink;
-	while (pFrontEdge!=NULL && pFrontEdge->sDest!=DSver)
+	while (pFrontEdge!=NULL && pFrontEdge->sDest!=iDSver)//判断的为目标的位置而不是目标节点
 	{
 		pBackEdge = pFrontEdge;
 		pFrontEdge = pFrontEdge->pDLink;
 	}
 	if (pFrontEdge == NULL)
+	{
+		printf("没有边需要删除！\n");
 		return;
+	}
+		
 	if (pBackEdge == NULL)//说明节点为第一个，此时的PF还没有被赋值，让头节点赋值给下一个
 	{
 		pAdjList->pVerticeList[iDFver].pDAdjLink = pFrontEdge->pDLink;
@@ -90,12 +94,18 @@ void RemoveEdge(AdjacencyList* pAdjList, Ver DFver, Ver DSver)
 	//DSver>DFver
 	pBackEdge = NULL;
 	pFrontEdge = pAdjList->pVerticeList[iDSver].pDAdjLink;
-	while (pFrontEdge != NULL && pFrontEdge->sDest != DFver)
+	while (pFrontEdge != NULL && pFrontEdge->sDest != iDFver)
 	{
 		pBackEdge = pFrontEdge;
 		pFrontEdge = pFrontEdge->pDLink;
 	}
 	
+	if (pFrontEdge == NULL)//此部分可以省略，因为无向图，在第一次检测边不存在时就以确定，不必再次检查！
+	{
+		printf("没有边需要删除！\n");
+		return;
+	}
+
 	if (pBackEdge == NULL)
 	{
 		pAdjList->pVerticeList[iDSver].pDAdjLink = pFrontEdge->pDLink;
