@@ -18,6 +18,13 @@ int main()
 	InsertEdge(&MyAdjList, 'C', 'E');
 
 	ShowAdjList(&MyAdjList);
-	RemoveEdge(&MyAdjList, 'B', 'C');
-	ShowAdjList(&MyAdjList);
+	//RemoveEdge(&MyAdjList, 'B', 'C');
+	//RemoveVertice(&MyAdjList, 'C');
+	//ShowAdjList(&MyAdjList);
+	int iFirstNeighbar = GetFirstNeighbor(&MyAdjList, 'A');
+	printf("Neighbar :> %d\n", iFirstNeighbar);
+	int iNextNeighbar = GetNextNeighbor(&MyAdjList, 'B', 'A');
+	printf("Neighbar :> %d\n", iNextNeighbar);
+	
+	
 }

@@ -52,12 +52,14 @@ void InsertEdge(AdjacencyList* pAdjList, Ver DFver, Ver DSver)
 	pTempEdge->sDest = iSVerPos;
 	pTempEdge->pDLink = pAdjList->pVerticeList[iFVerPos].pDAdjLink;//Continu Link
 	pAdjList->pVerticeList[iFVerPos].pDAdjLink = pTempEdge;
+	pAdjList->iEdgeNum++;
 	//DSver to DFver
 	pTempEdge = (Edge*)malloc(sizeof(Edge));
 	assert(pTempEdge != NULL);
 	pTempEdge->sDest = iFVerPos;
 	pTempEdge->pDLink = pAdjList->pVerticeList[iSVerPos].pDAdjLink;
 	pAdjList->pVerticeList[iSVerPos].pDAdjLink = pTempEdge;
+	pAdjList->iEdgeNum++;
 }
 
 void RemoveEdge(AdjacencyList* pAdjList, Ver DFver, Ver DSver)
@@ -90,6 +92,7 @@ void RemoveEdge(AdjacencyList* pAdjList, Ver DFver, Ver DSver)
 		pBackEdge->pDLink = pFrontEdge->pDLink; 
 	}
 	free(pFrontEdge);
+	pAdjList->iEdgeNum--;
 
 	//DSver>DFver
 	pBackEdge = NULL;
@@ -115,6 +118,96 @@ void RemoveEdge(AdjacencyList* pAdjList, Ver DFver, Ver DSver)
 		pBackEdge->pDLink = pFrontEdge->pDLink;
 	}
 	free(pFrontEdge);
+	pAdjList->iEdgeNum--;
+}
+
+void RemoveVertice(AdjacencyList* pAdjList, Ver Dver)
+{
+	int iDver = GetVerticePos(pAdjList, Dver);
+	if (iDver == -1)
+		return;
+
+	Edge* pDeleteEdge = pAdjList->pVerticeList[iDver].pDAdjLink;
+	Edge* pFrontEdge;
+	Edge* pBackEdge = NULL;
+	int	  iRelateEdge;
+	
+	//Remove Edge
+	while (pDeleteEdge!=NULL)
+	{
+		iRelateEdge = pDeleteEdge->sDest;
+		pFrontEdge = pAdjList->pVerticeList[iRelateEdge].pDAdjLink;
+		while (pFrontEdge!=NULL && pFrontEdge->sDest!=iDver)
+		{
+			pBackEdge = pFrontEdge;
+			pFrontEdge = pFrontEdge->pDLink;
+		}
+		if (pFrontEdge == NULL)
+		{
+			return;
+		}
+		else
+		{
+			if (pBackEdge == NULL)
+			{
+				pAdjList->pVerticeList[iRelateEdge].pDAdjLink = pFrontEdge->pDLink;
+			}
+			else
+			{
+				pBackEdge->pDLink = pFrontEdge->pDLink;//删除前置！
+			}
+			free(pFrontEdge);
+			pAdjList->iEdgeNum--;
+		}
+		pAdjList->pVerticeList[iDver].pDAdjLink = pDeleteEdge->pDLink;
+		free(pDeleteEdge);
+		pAdjList->iEdgeNum--;
+		pDeleteEdge = pAdjList->pVerticeList[iDver].pDAdjLink;
+	}
+
+	//Replace Vertice
+	pAdjList->iVerticeNum--;
+	pAdjList->pVerticeList[iDver].DVerData = pAdjList->pVerticeList[pAdjList->iVerticeNum].DVerData;
+	pAdjList->pVerticeList[iDver].pDAdjLink = pAdjList->pVerticeList[pAdjList->iVerticeNum].pDAdjLink;
+
+	//Adjest EdgeMap
+
+	pDeleteEdge = pAdjList->pVerticeList[iDver].pDAdjLink;
+	while (pDeleteEdge != NULL)
+	{
+		iRelateEdge = pDeleteEdge->sDest;
+		pFrontEdge = pAdjList->pVerticeList[iRelateEdge].pDAdjLink;
+		while (pFrontEdge != NULL)
+		{
+			if (pFrontEdge->sDest == pAdjList->iVerticeNum)
+			{
+				pFrontEdge->sDest = iDver;
+				break;//两点确定一条直线
+			}
+			pFrontEdge = pFrontEdge->pDLink;
+		}
+		pDeleteEdge = pDeleteEdge->pDLink;
+	}
+
+}
+
+void DestoryAdjList(AdjacencyList* pAdjList)
+{
+	Edge* pDeleteEdge=NULL;
+	for (int i = 0; i < pAdjList->iMaxVertice; ++i)
+	{
+		pDeleteEdge = pAdjList->pVerticeList[i].pDAdjLink;
+		while (pDeleteEdge != NULL)
+		{
+			pAdjList->pVerticeList[i].pDAdjLink = pDeleteEdge->pDLink;
+			free(pDeleteEdge);
+			pDeleteEdge = pDeleteEdge->pDLink;
+		}
+	}
+	free(pAdjList->pVerticeList);
+	pAdjList->pVerticeList = NULL;
+	pAdjList->iEdgeNum = pAdjList->iMaxVertice = pAdjList->iVerticeNum = 0;
+
 }
 
 int	 GetVerticePos(AdjacencyList* pAdjList, Ver Dver)
@@ -127,3 +220,47 @@ int	 GetVerticePos(AdjacencyList* pAdjList, Ver Dver)
 	return -1;
 }
 
+int  GetFirstNeighbor(AdjacencyList* pAdjList, Ver Dver)
+{
+	int iDver = GetVerticePos(pAdjList, Dver);
+	if (iDver == -1)
+		return -1;
+	Edge* pNeighborVer = pAdjList->pVerticeList[iDver].pDAdjLink;
+	if (pNeighborVer != NULL)
+		return pNeighborVer->sDest;
+	return -1;
+}
+
+//int  GetNextNeighbor(AdjacencyList* pAdjList, Ver DFver, Ver DSver)
+//{
+//	int iDFver = GetVerticePos(pAdjList, DFver);
+//	int iDSver = GetVerticePos(pAdjList, DSver);
+//	if (iDFver == -1 || iDSver == -1)
+//		return -1;
+//
+//	Edge* pSearchEdge = pAdjList->pVerticeList[iDFver].pDAdjLink;
+//	while (pSearchEdge != NULL && pSearchEdge->sDest != iDSver);
+//	{
+//		pSearchEdge = pSearchEdge->pDLink;
+//	}
+//	if (pSearchEdge != NULL && pSearchEdge->pDLink != NULL)
+//		return pSearchEdge->pDLink->sDest;
+//	return -1;
+//}
+
+int  GetNextNeighbor(AdjacencyList* pAdjList, Ver DFver, Ver DSver)
+{
+	int iDFver = GetVerticePos(pAdjList, DFver);
+	int iDSver = GetVerticePos(pAdjList, DSver);
+	if (iDFver == -1 || iDSver == -1)
+		return -1;
+
+	Edge* pSearchEdge = pAdjList->pVerticeList[iDFver].pDAdjLink;
+	while (pSearchEdge != NULL && pSearchEdge->sDest != iDSver)
+	{
+		pSearchEdge = pSearchEdge->pDLink;
+	}
+	if (pSearchEdge != NULL && pSearchEdge->pDLink != NULL)
+		return pSearchEdge->pDLink->sDest;
+	return -1;
+}
