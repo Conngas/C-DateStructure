@@ -24,7 +24,7 @@ int main()
 	InsertEdge(&SMyGraph, 'F', 'G');
 	ShowGraph(&SMyGraph);
 
-	DepthFirstSearch()
+	DepthFirstSearch(&SMyGraph, 'A');
 
 	//printf("%d\n", GetFirstNeighborVertice(&SMyGraph, 'D'));
 	//printf("%d\n", GetNextNeighborVertice(&SMyGraph, 'D', 'C'));

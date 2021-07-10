@@ -209,7 +209,37 @@ int  GetNextNeighborVertice(SAdjacnecyMatrix* psAdjMtrix, VerList DverFirst, Ver
 
 //Traverse
 
-void DepthFirstSearch(SAdjacnecyMatrix* paAdjMtrix, VerList Dver)
+void DepthFirstSearch(SAdjacnecyMatrix* pAdjMtrix, VerList Dver)
 {
+	int iVerticeNum = pAdjMtrix->iNumVertices;
+	bool* pVisited = (bool*)malloc(sizeof(bool) * iVerticeNum);
+	assert(pVisited != NULL);
+	for (int i = 0;i < iVerticeNum;++i)
+	{
+		pVisited[i] = false;
+	}
+	int iVerPos = GetVerticePos(pAdjMtrix, Dver);
+	DepthFirstSearch(pAdjMtrix, iVerPos, pVisited);
+	printf("Nul.\n");
+	free(pVisited);
+}
 
+void DepthFirstSearch(SAdjacnecyMatrix* pAdjMtrix, int iVerPos, bool pVisited[])
+{
+	printf("%c->", GetVerticeValue(pAdjMtrix, iVerPos));
+	pVisited[iVerPos] = true;
+	int iVerFirstNeighborPos = GetFirstNeighborVertice(pAdjMtrix,GetVerticeValue(pAdjMtrix,iVerPos));
+	while (iVerFirstNeighborPos!=-1)
+	{
+		if (!pVisited[iVerFirstNeighborPos])
+			DepthFirstSearch(pAdjMtrix, iVerFirstNeighborPos, pVisited);
+		iVerFirstNeighborPos = GetNextNeighborVertice(pAdjMtrix, GetVerticeValue(pAdjMtrix, iVerPos), GetVerticeValue(pAdjMtrix, iVerFirstNeighborPos));
+	}
+}
+
+VerList GetVerticeValue(SAdjacnecyMatrix* paAdjMtrix, int iVerPos)
+{
+	if (iVerPos == -1)
+		return 0;
+	return paAdjMtrix->pDVerticesList[iVerPos];
 }

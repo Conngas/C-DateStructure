@@ -30,3 +30,5 @@ int  GetNextNeighborVertice(SAdjacnecyMatrix* psAdjMtrix, VerList DverFirst, Ver
 
 //Traverse
 void DepthFirstSearch(SAdjacnecyMatrix* paAdjMtrix,VerList Dver);
+void DepthFirstSearch(SAdjacnecyMatrix* paAdjMtrix,int iVerPos,bool pVisited[]);
+VerList GetVerticeValue(SAdjacnecyMatrix* paAdjMtrix, int iVerPos);
