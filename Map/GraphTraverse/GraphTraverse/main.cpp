@@ -25,6 +25,7 @@ int main()
 	ShowGraph(&SMyGraph);
 
 	DepthFirstSearch(&SMyGraph, 'A');
+	BreadthFirstSearch(&SMyGraph, 'A');
 
 	//printf("%d\n", GetFirstNeighborVertice(&SMyGraph, 'D'));
 	//printf("%d\n", GetNextNeighborVertice(&SMyGraph, 'D', 'C'));

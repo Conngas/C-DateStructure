@@ -1,4 +1,6 @@
 #include"GraphTraverse.h"
+#include"Queue.h"
+
 
 void InitGraph(SAdjacnecyMatrix* pSAdjMatrix)
 {
@@ -218,6 +220,7 @@ void DepthFirstSearch(SAdjacnecyMatrix* pAdjMtrix, VerList Dver)
 	{
 		pVisited[i] = false;
 	}
+	printf("DFS:");
 	int iVerPos = GetVerticePos(pAdjMtrix, Dver);
 	DepthFirstSearch(pAdjMtrix, iVerPos, pVisited);
 	printf("Nul.\n");
@@ -242,4 +245,51 @@ VerList GetVerticeValue(SAdjacnecyMatrix* paAdjMtrix, int iVerPos)
 	if (iVerPos == -1)
 		return 0;
 	return paAdjMtrix->pDVerticesList[iVerPos];
+}
+
+//BreadthFirstSearch
+
+void BreadthFirstSearch(SAdjacnecyMatrix* pAdjMtrix, VerList Dver)
+{
+	//Init Segment
+	int iVerticeNum = pAdjMtrix->iNumVertices;
+	int iVerPos = GetVerticePos(pAdjMtrix, Dver);
+	int iVerFirstNextVerPos=-1;
+
+	//Init VisitedList
+	bool* pVisited = (bool*)malloc(sizeof(bool) * iVerticeNum);
+	assert(pVisited != NULL);
+	for (int i = 0;i < iVerticeNum;++i)
+	{
+		pVisited[i] = false;
+	}
+	pVisited[iVerPos] = true;
+		
+
+	//Init Queue
+	Queue BFSQueue;
+	InitQueueFun(&BFSQueue);
+	EnterQueueFun(&BFSQueue, iVerPos);
+
+	//Ready to Traverse
+	printf("BFS:%c->", GetVerticeValue(pAdjMtrix, iVerPos));
+	while (!IsEmpty(&BFSQueue))
+	{
+		iVerPos = GetQueueFrontElem(&BFSQueue);
+		DeQueueFun(&BFSQueue);
+		iVerFirstNextVerPos = GetFirstNeighborVertice(pAdjMtrix, GetVerticeValue(pAdjMtrix, iVerPos));
+
+		while (iVerFirstNextVerPos!=-1)
+		{
+			if (!pVisited[iVerFirstNextVerPos])
+			{
+				printf("%c->", GetVerticeValue(pAdjMtrix, iVerFirstNextVerPos));
+				pVisited[iVerFirstNextVerPos] = true;
+				EnterQueueFun(&BFSQueue, iVerFirstNextVerPos);
+			}
+			iVerFirstNextVerPos = GetNextNeighborVertice(pAdjMtrix, GetVerticeValue(pAdjMtrix, iVerPos), GetVerticeValue(pAdjMtrix, iVerFirstNextVerPos));
+		}
+	}
+	free(pVisited);
+	printf("Nul.\n");
 }

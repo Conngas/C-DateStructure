@@ -9,6 +9,12 @@ int main()
 		EnterQueueFun(&q1, i);
 	}
 	DeQueueFun(&q1);
+	DeQueueFun(&q1);
+	DeQueueFun(&q1);
+	DeQueueFun(&q1);
+	DeQueueFun(&q1);
+	DeQueueFun(&q1);
+	DeQueueFun(&q1);
 	Show(&q1);
 	GetQueueFornt(&q1);
 	Length(&q1);

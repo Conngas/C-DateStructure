@@ -68,11 +68,31 @@ void GetQueueFornt(Queue* q)
 	printf("%d", q->front->next->Data);
 }
 
+void GetQueueFront(Queue* q, QueueElemType* Ret)
+{
+	if (q->front == q->rear)
+	{
+		printf("队空，没有数据\n");
+		return;
+	}
+	*Ret = q->front->next->Data;
+}
+
+QueueElemType GetQueueFrontElem(Queue* q)
+{
+	if (q->front == q->rear)
+	{
+		printf("队空，没有数据\n");
+		return -1;
+	}
+	return q->front->next->Data;
+}
+
 void Length(Queue* q)
 {
 	if (q->front == q->rear)
 	{
-		printf("队空，没有元素\n");
+		printf("队空，没有元素");
 		return;
 	}
 	int num = 0;
@@ -89,7 +109,7 @@ void Clear(Queue* q)
 {
 	if (q->front == q->rear)
 	{
-		printf("队空，没有元素\n");
+		printf("队空，没有元素");
 		return;
 	}
 	QueueNode* d = q->front->next;
@@ -109,4 +129,9 @@ void Destory(Queue* q)
 	Clear(q);
 	free(q->front);
 	q->front = q->rear = NULL;
+}
+
+bool IsEmpty(Queue* q)
+{
+	return q->front == q->rear;
 }
