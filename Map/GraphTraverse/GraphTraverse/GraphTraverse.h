@@ -4,7 +4,7 @@
 #include<malloc.h>
 #include<assert.h>
 
-#define Default_Vertices_Size 10
+#define Default_Vertices_Size 20
 #define VerList char
 typedef struct SAdjacnecyMatrix
 {
@@ -34,3 +34,5 @@ void DepthFirstSearch(SAdjacnecyMatrix* paAdjMtrix,int iVerPos,bool pVisited[]);
 VerList GetVerticeValue(SAdjacnecyMatrix* paAdjMtrix, int iVerPos);
 
 void BreadthFirstSearch(SAdjacnecyMatrix* pAdjMtrix, VerList Dver);
+
+void DFSComponents(SAdjacnecyMatrix* pAdjMtrix);

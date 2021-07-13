@@ -293,3 +293,26 @@ void BreadthFirstSearch(SAdjacnecyMatrix* pAdjMtrix, VerList Dver)
 	free(pVisited);
 	printf("Nul.\n");
 }
+
+//DFS
+
+void DFSComponents(SAdjacnecyMatrix* pAdjMtrix)
+{
+	int iVerticeNum = pAdjMtrix->iNumVertices;
+	bool* pVisited = (bool*)malloc(sizeof(bool) * iVerticeNum);
+	assert(pVisited != NULL);
+	for (int i = 0;i < iVerticeNum; ++i)
+	{
+		pVisited[i] = false;
+	}
+
+	for (int j = 0; j < iVerticeNum; ++j)
+	{
+		if (!pVisited[j])
+		{
+			DepthFirstSearch(pAdjMtrix, j, pVisited);
+			printf("Nul.\n");
+		}			
+	}
+	free(pVisited);
+}
