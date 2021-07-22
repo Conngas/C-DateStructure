@@ -1,0 +1,2 @@
+H:\CodeWorks\ComputerScience\DS\Map\GraphMinSpanTree_Kruskal\GraphMinSpanTree_Kruskal\Debug\GraphMinSpanTree_Kruskal.exe
+H:\CodeWorks\ComputerScience\DS\Map\GraphMinSpanTree_Kruskal\GraphMinSpanTree_Kruskal\Debug\GraphMinSpanTree_Kruskal.pdb

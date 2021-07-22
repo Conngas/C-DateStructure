@@ -54,7 +54,6 @@ void ShowGraph(SAdjacnecyMatrix* pSAdjMatrix)
 			{
 				printf("%d  ", pSAdjMatrix->ppiEdge[i][j]);
 			}
-			
 		}
 		printf("\n");
 	}
@@ -68,7 +67,7 @@ void InsertVertics(SAdjacnecyMatrix* pSAdjMtrix, VerList DVer)
 	pSAdjMtrix->pDVerticesList[pSAdjMtrix->iNumVertices++] = DVer;
 }
 
-void InsertEdge(SAdjacnecyMatrix* pSAdjMtrix, VerList DverFirst, VerList DverSecond, Weight Dweight)
+void InsertEdge(SAdjacnecyMatrix* pSAdjMtrix, VerList DverFirst, VerList DverSecond,Weight Dweight)
 {
 	int iVerPosF = GetVerticePos(pSAdjMtrix,DverFirst);
 	int iVerPosS = GetVerticePos(pSAdjMtrix,DverSecond);
@@ -222,74 +221,102 @@ int  GetNextNeighborVertice(SAdjacnecyMatrix* psAdjMtrix, VerList DverFirst, Ver
 	return -1;
 }
 
-void MinSpanTreePrim(SAdjacnecyMatrix* pSAdjMtrix, VerList Dver)
+//Kruskal
+
+int CompEdge(const void* pFComp, const void* pSComp)
 {
-	int iVerticeNum = pSAdjMtrix->iNumVertices;
-	Weight* pDLowCost = (Weight*)malloc(sizeof(pDLowCost) * iVerticeNum);
-	int* piMinSpanTreeList = (int*)malloc(sizeof(int) * iVerticeNum);
-	assert(pDLowCost != NULL && piMinSpanTreeList != NULL);
+	return(*(Edge*)pFComp).Dweight - (*(Edge*)pSComp).Dweight;
+}
 
-	int iVerticePos = GetVerticePos(pSAdjMtrix, Dver);
+bool Is_SimGroup(int* pRoot, int iStart, int iEnd)//Trace Base Root
+{
+	while (pRoot[iStart]!=iStart)
+	{
+		iStart = pRoot[iStart];
+	}
+	while (pRoot[iEnd] != iEnd)
+	{
+		iEnd = pRoot[iEnd];
+	}
+	return iStart == iEnd;
+}
 
+void MergeEdge(int* pRoot, int iStart, int iEnd)
+{
+	while (pRoot[iStart]!=iStart)
+	{
+		iStart = pRoot[iStart];
+	}
+	while (pRoot[iEnd] != iEnd)
+	{
+		iEnd = pRoot[iEnd];
+	}
+	pRoot[iEnd] = iStart;
+}
+//void MergeEdge(int* pRoot, int iStart, int iEnd)
+//{
+//	pRoot[iEnd] = iStart;
+//}
+
+void MinSpainTree_Kruskal(SAdjacnecyMatrix* psAdjMtrix)
+{
+	int iVerticeNum = psAdjMtrix->iNumVertices;
+	//int iOrgainEdgeNum = psAdjMtrix->iNumEdges;
+	//Edge = MaxEdge
+	Edge* pCompEdge = (Edge*)malloc(sizeof(Edge) * ((iVerticeNum*(iVerticeNum-1))/2));//Contain All Weight Edge
+	assert(pCompEdge != NULL);
+
+	int iEdgeNum = 0;
 	for (int i = 0; i < iVerticeNum; ++i)
 	{
-		if (i != iVerticePos)
+		for (int j = i; j < iVerticeNum; ++j)
 		{
-			pDLowCost[i] = GetWeight(pSAdjMtrix,iVerticePos,i);
-			piMinSpanTreeList[i] = iVerticePos;
-		}
-		else
-		{
-			pDLowCost[i] = 0;//Eq iVerPos
-		}
-	}
-
-	//Compare
-	int iMinWeight;
-	int iMinWeightIndex;
-	int iMSTBegainIndex;
-	int iMSTEndIndex;
-	Weight DWeight;
-
-	for (int j = 0; j < iVerticeNum - 1; ++j)
-	{
-		iMinWeight = MAX_COST;
-		iMinWeightIndex = -1;
-		for (int m = 0; m < iVerticeNum; ++m)
-		{
-			if (pDLowCost[m] != 0 && pDLowCost[m] < iMinWeight)
+			if (psAdjMtrix->ppiEdge[i][j] != 0 && psAdjMtrix->ppiEdge[i][j] != MAX_COST)
 			{
-				//Update
-				iMinWeight = pDLowCost[m];
-				iMinWeightIndex = m;
-			}
-		}
-
-		iMSTBegainIndex = piMinSpanTreeList[iMinWeightIndex];
-		iMSTEndIndex = iMinWeightIndex;
-
-		printf("%c->%c  : %d\n", pSAdjMtrix->pDVerticesList[iMSTBegainIndex], pSAdjMtrix->pDVerticesList[iMSTEndIndex], iMinWeight);
-
-		pDLowCost[iMinWeightIndex] = 0;
-
-		for (int k = 0; k < iVerticeNum; ++k)
-		{
-			DWeight = GetWeight(pSAdjMtrix, iMinWeightIndex, k);
-			if (DWeight < pDLowCost[k])
-			{
-				pDLowCost[k] = DWeight;
-				piMinSpanTreeList[k] = iMinWeightIndex;
+				pCompEdge[iEdgeNum].iStartEdge = i;
+				pCompEdge[iEdgeNum].iEndEdge = j;
+				pCompEdge[iEdgeNum].Dweight = psAdjMtrix->ppiEdge[i][j];
+				iEdgeNum++;
 			}
 		}
 	}
-}
 
-Weight GetWeight(SAdjacnecyMatrix* pSAdjMtrix, int iVerBegin, int iVerFind)
-{
-	if (iVerBegin == -1 || iVerFind == -1)
+
+	/*int m, n;
+	for (int i = 0; i < iEdgeNum; ++i)
 	{
-		return MAX_COST;
-	}
-	return pSAdjMtrix->ppiEdge[iVerBegin][iVerFind];
-}
+		m = pCompEdge[i].iStartEdge;
+		n = pCompEdge[i].iEndEdge;
+		printf("%c--->%c : %d\n", psAdjMtrix->pDVerticesList[m], psAdjMtrix->pDVerticesList[n], pCompEdge[i].Dweight);
+	}*/
+	//Sort CompEdge
+	qsort(pCompEdge,iEdgeNum,sizeof(Edge),CompEdge);
+	//printf("--------------------------------------------\n");
+	//for (int i = 0; i < iEdgeNum; ++i)
+	//{
+	//	m = pCompEdge[i].iStartEdge;
+	//	n = pCompEdge[i].iEndEdge;
+	//	printf("%c--->%c : %d\n", psAdjMtrix->pDVerticesList[m], psAdjMtrix->pDVerticesList[n], pCompEdge[i].Dweight);
+	//}
 
+
+	//Recongnize Edge
+	int* pRoot = (int*)malloc(sizeof(int) * iVerticeNum);
+	int iStartX, iEndY;
+	assert(pRoot != NULL);
+	for (int i = 0; i < iVerticeNum; ++i)
+	{
+		pRoot[i] = i;
+	}
+
+	for (int i = 0; i < iEdgeNum; ++i)//Keep eyes on iEdgeNum Not iVertice or Use While
+	{
+		if (!Is_SimGroup(pRoot, pCompEdge[i].iStartEdge, pCompEdge[i].iEndEdge))
+		{
+			iStartX = pCompEdge[i].iStartEdge;
+			iEndY = pCompEdge[i].iEndEdge;
+			printf("%c->%c : %d\n", psAdjMtrix->pDVerticesList[iStartX], psAdjMtrix->pDVerticesList[iEndY], pCompEdge[i].Dweight);
+			MergeEdge(pRoot, pCompEdge[i].iStartEdge, pCompEdge[i].iEndEdge);
+		}
+	}
+}
