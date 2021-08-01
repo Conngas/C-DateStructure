@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
-  <ProjectOutputs>
-    <ProjectOutput>
-      <FullPath>H:\CodeWorks\ComputerScience\DS\Map\GraphCriticalRoute\GraphCriticalRoute\Debug\GraphCriticalRoute.exe</FullPath>
-    </ProjectOutput>
-  </ProjectOutputs>
-  <ContentFiles />
-  <SatelliteDlls />
-  <NonRecipeFileRefs />
+  <ProjectOutputs>E:\Works\CodeWorks\ComputerScience\DS\Map\GraphCriticalRoute\GraphCriticalRoute\Debug\GraphCriticalRoute.exe</ProjectOutputs>
+  <ContentFiles></ContentFiles>
+  <SatelliteDlls></SatelliteDlls>
+  <NonRecipeFileRefs></NonRecipeFileRefs>
 </Project>

@@ -27,9 +27,12 @@ int main()
 	InsertEdge(&SMyGraph, 'H', 'I',4);
 	ShowGraph(&SMyGraph);
 
+	CritiaclRoute(&SMyGraph);
+
 	printf("%d\n", GetFirstNeighborVertice(&SMyGraph, 'D'));
 	printf("%d\n", GetNextNeighborVertice(&SMyGraph, 'D','C'));
 
+	
 
 	RemoveEdge(&SMyGraph, 'B', 'C');
 	ShowGraph(&SMyGraph);

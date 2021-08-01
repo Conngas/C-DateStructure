@@ -28,3 +28,7 @@ void DestoryGraph(SAdjacnecyMatrix* pSAdjMtrix);
 int  GetVerticePos(SAdjacnecyMatrix* pSAdjMtrix, VerList Dver);
 int	 GetFirstNeighborVertice(SAdjacnecyMatrix* pSAdjMtrix, VerList Dver);
 int  GetNextNeighborVertice(SAdjacnecyMatrix* psAdjMtrix, VerList DverFirst, VerList DeverSecond);
+
+//Path
+void CritiaclRoute(SAdjacnecyMatrix* psAdjMtrix);
+int GetWright(SAdjacnecyMatrix* psAdjMtrix, int iVerPosF, int iVerPosS);

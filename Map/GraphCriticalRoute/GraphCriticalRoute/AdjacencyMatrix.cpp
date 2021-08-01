@@ -194,7 +194,9 @@ int	 GetFirstNeighborVertice(SAdjacnecyMatrix* pSAdjMtrix, VerList Dver)
 
 	for (int i = 0; i < pSAdjMtrix->iNumVertices; ++i)
 	{
-		if (pSAdjMtrix->ppiEdge[iVerticePos][i] == 1)
+		/*if (pSAdjMtrix->ppiEdge[iVerticePos][i] != -1)
+			return i;*/
+		if (pSAdjMtrix->ppiEdge[iVerticePos][i] != 0)
 			return i;
 	}
 	return -1;
@@ -209,8 +211,55 @@ int  GetNextNeighborVertice(SAdjacnecyMatrix* psAdjMtrix, VerList DverFirst, Ver
 
 	for (int i = iVerticePosS + 1; i < psAdjMtrix->iNumVertices; ++i)
 	{
-		if (psAdjMtrix->ppiEdge[iVerticePosF][i] == 1)
+		/*if (psAdjMtrix->ppiEdge[iVerticePosF][i] != -1)
+			return i;*/
+		//Neq 0 mean Vertice Exists
+		if (psAdjMtrix->ppiEdge[iVerticePosF][i] != 0)
 			return i;
 	}
 	return -1;
+}
+
+int GetWright(SAdjacnecyMatrix* psAdjMtrix, int iVerPosF, int iVerPosS)
+{
+	if (iVerPosF == -1 || iVerPosS == -1)
+	{
+		return 0;
+	}
+	return psAdjMtrix->ppiEdge[iVerPosF][iVerPosS];
+}
+
+void CritiaclRoute(SAdjacnecyMatrix* psAdjMtrix)
+{
+	int iVerticeNum = psAdjMtrix->iNumVertices;
+	int* pVerticePreStart = (int*)malloc(sizeof(int) * iVerticeNum);
+	int* pVerticeFinEnd = (int*)malloc(sizeof(int) * iVerticeNum);
+	assert(pVerticePreStart != NULL && pVerticeFinEnd != NULL);
+	
+	//Init
+	for (int i = 0; i < iVerticeNum; ++i)
+	{
+		pVerticePreStart[i] = pVerticeFinEnd[i] = 0;
+	}
+
+	//PreStart
+	int iNextNeiVer, iWrightTemp;
+	for (int i = 0; i < iVerticeNum; ++i)
+	{
+		iNextNeiVer = GetFirstNeighborVertice(psAdjMtrix, psAdjMtrix->pDVerticesList[i]);
+		while(iNextNeiVer!=-1)
+		{
+			iWrightTemp = GetWright(psAdjMtrix, i, iNextNeiVer);
+			if (pVerticePreStart[i] + iWrightTemp > pVerticePreStart[iNextNeiVer])
+			{
+				pVerticePreStart[iNextNeiVer] = pVerticePreStart[i] + iWrightTemp;
+			}
+			iNextNeiVer = GetNextNeighborVertice(psAdjMtrix, psAdjMtrix->pDVerticesList[i], psAdjMtrix->pDVerticesList[iNextNeiVer]);
+		}
+	}
+
+	for (int i = 0; i < iVerticeNum; ++i)
+	{
+		printf("%d", pVerticePreStart[i]);
+	}
 }

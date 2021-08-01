@@ -1,2 +1,4 @@
 H:\CodeWorks\ComputerScience\DS\Map\GraphCriticalRoute\GraphCriticalRoute\Debug\GraphCriticalRoute.exe
 H:\CodeWorks\ComputerScience\DS\Map\GraphCriticalRoute\GraphCriticalRoute\Debug\GraphCriticalRoute.pdb
+E:\Works\CodeWorks\ComputerScience\DS\Map\GraphCriticalRoute\GraphCriticalRoute\Debug\GraphCriticalRoute.exe
+E:\Works\CodeWorks\ComputerScience\DS\Map\GraphCriticalRoute\GraphCriticalRoute\Debug\GraphCriticalRoute.pdb
