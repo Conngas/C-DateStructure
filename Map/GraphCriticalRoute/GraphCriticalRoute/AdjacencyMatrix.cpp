@@ -239,8 +239,10 @@ void CritiaclRoute(SAdjacnecyMatrix* psAdjMtrix)
 	//Init
 	for (int i = 0; i < iVerticeNum; ++i)
 	{
-		pVerticePreStart[i] = pVerticeFinEnd[i] = 0;
+		pVerticePreStart[i] = 0;
+		pVerticeFinEnd[i] = MAX_COST;
 	}
+	pVerticeFinEnd[0] = 0;
 
 	//PreStart
 	int iNextNeiVer, iWrightTemp;
@@ -257,9 +259,44 @@ void CritiaclRoute(SAdjacnecyMatrix* psAdjMtrix)
 			iNextNeiVer = GetNextNeighborVertice(psAdjMtrix, psAdjMtrix->pDVerticesList[i], psAdjMtrix->pDVerticesList[iNextNeiVer]);
 		}
 	}
-
+	//for (int i = 0; i < iVerticeNum; ++i)
+	//{
+	//	printf("%d->", pVerticePreStart[i]);
+	//}
+	//FinEnd
+	pVerticeFinEnd[iVerticeNum - 1] = pVerticePreStart[iVerticeNum - 1];
+	for (int i = iVerticeNum - 2; i > 0; --i)//i born in the last second
+	{
+		iNextNeiVer = GetFirstNeighborVertice(psAdjMtrix, psAdjMtrix->pDVerticesList[i]);
+		while (iNextNeiVer!=-1)
+		{
+			iWrightTemp = GetWright(psAdjMtrix, i, iNextNeiVer);
+			if (pVerticeFinEnd[iNextNeiVer] - iWrightTemp < pVerticeFinEnd[i])//Lasest Vertice alawys the beggest
+			{
+				pVerticeFinEnd[i] = pVerticeFinEnd[iNextNeiVer] - iWrightTemp;
+			}
+			iNextNeiVer = GetNextNeighborVertice(psAdjMtrix, psAdjMtrix->pDVerticesList[i], psAdjMtrix->pDVerticesList[iNextNeiVer]);
+		}
+	}
+	//for (int i = 0; i < iVerticeNum; ++i)
+	//{
+	//	printf("%d->", pVerticeFinEnd[i]);
+	//}
+	int iVerticeEarly,iVerticeLast;
 	for (int i = 0; i < iVerticeNum; ++i)
 	{
-		printf("%d", pVerticePreStart[i]);
+		iNextNeiVer = GetFirstNeighborVertice(psAdjMtrix, psAdjMtrix->pDVerticesList[i]);
+		while (iNextNeiVer != -1)
+		{
+			iVerticeEarly = pVerticePreStart[i];
+			iVerticeLast = pVerticeFinEnd[iNextNeiVer] - GetWright(psAdjMtrix, i, iNextNeiVer);
+			if (iVerticeEarly == iVerticeLast)
+			{
+				printf("<%c,%c>ÊÇ¹Ø¼üÂ·¾¶\n",psAdjMtrix->pDVerticesList[i], psAdjMtrix->pDVerticesList[iNextNeiVer]);
+			}
+			iNextNeiVer = GetNextNeighborVertice(psAdjMtrix, psAdjMtrix->pDVerticesList[i], psAdjMtrix->pDVerticesList[iNextNeiVer]);
+		}
 	}
+	free(pVerticeFinEnd);
+	free(pVerticePreStart);
 }

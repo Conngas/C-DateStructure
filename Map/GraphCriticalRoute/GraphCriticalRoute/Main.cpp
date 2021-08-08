@@ -24,7 +24,7 @@ int main()
 	InsertEdge(&SMyGraph, 'E', 'H',7);
 	InsertEdge(&SMyGraph, 'F', 'H',4);
 	InsertEdge(&SMyGraph, 'G', 'I',2);
-	InsertEdge(&SMyGraph, 'H', 'I',4);
+	InsertEdge(&SMyGraph, 'H', 'I',6);
 	ShowGraph(&SMyGraph);
 
 	CritiaclRoute(&SMyGraph);
